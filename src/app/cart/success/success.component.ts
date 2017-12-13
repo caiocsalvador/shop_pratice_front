@@ -1,15 +1,17 @@
+import { CartSevice } from './../../shared/cart.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-success',
-  templateUrl: './success.component.html',
-  styleUrls: ['./success.component.scss']
+	selector: 'app-success',
+	templateUrl: './success.component.html',
+	styleUrls: ['./success.component.scss']
 })
 export class SuccessComponent implements OnInit {
 
-  constructor() { }
+	constructor(private cartService: CartSevice) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+		this.cartService.emptyCart();
+	}
 
 }

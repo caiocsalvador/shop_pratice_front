@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between mb-3">
 	<span class="total">Total: {{ total }}</span>
-	<button class="btn btn-success buy-btn" (click)="buyCart()">Buy</button>
+	<button class="btn btn-success buy-btn" (click)="buyCart()" [disabled]="products.length == 0">Buy</button>
 </div>
 
 <p *ngIf="products.length == 0">Empty Cart</p>
