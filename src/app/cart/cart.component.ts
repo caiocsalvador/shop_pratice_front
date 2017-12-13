@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
 
 import { Product } from './../shared/product.interface';
 import { CartSevice } from './../shared/cart.service';
@@ -15,7 +16,7 @@ export class CartComponent implements OnInit {
 	subscription: Subscription;
 	total: number;
 
-	constructor(private cartService: CartSevice) { }
+	constructor(private cartService: CartSevice, private router: Router) { }
 
 	ngOnInit() {
 		this.products = this.cartService.getItems();
@@ -30,6 +31,15 @@ export class CartComponent implements OnInit {
 
 	removeItem(product: Product){
 		this.cartService.removeItem(product);
+	}
+
+	buyCart(){
+		this.cartService.buyCart().subscribe(
+			response => {
+				this.router.navigate(['success']);
+			},
+			error => console.log(error),
+		);
 	}
 
 }
