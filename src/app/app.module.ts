@@ -1,3 +1,4 @@
+import { AuthGuard } from './shared/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,7 +32,8 @@ import { AuthService } from './shared/auth.service';
 	],
 	providers: [
 		ProductService,
-		AuthService
+		AuthService,
+		AuthGuard
 	],
 	bootstrap: [AppComponent]
 })

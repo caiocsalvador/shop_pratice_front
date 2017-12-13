@@ -1,1 +1,5 @@
-<app-product *ngFor="let product of products" [product]="product">Loading...</app-product>
+<div class="row">
+    <div class="col-md-4" *ngFor="let product of products">
+        <app-product [product]="product">Loading...</app-product>
+    </div>
+</div>

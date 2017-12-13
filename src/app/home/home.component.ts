@@ -11,16 +11,16 @@ import { AuthService } from '../shared/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-	constructor(private authService: AuthService) { }
+	constructor(private authService: AuthService, private router: Router) { }
 
 	ngOnInit() {
 	}
 
-	onSignip(form: NgForm) {
+	onSignin(form: NgForm) {
 		this.authService.signin(form.value.email, form.value.password)
 			.subscribe(
 				tokenData => {
-					return console.log(tokenData)
+					this.router.navigate(['/products']);
 				},
 				error => console.log(error),
 			);
