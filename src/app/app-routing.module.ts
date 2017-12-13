@@ -4,11 +4,14 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { SignupComponent } from './signup/signup.component';
+import { CartComponent } from './cart/cart.component';
+import { AuthGuard } from './shared/auth-guard.service';
 
 const appRoutes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'signup', component: SignupComponent },
 	{ path: 'products', loadChildren: './products/products.module#ProductsModule' },
+	{ path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
 	/*{ path: 'products', component: ProductsComponent },*/
 ];
 

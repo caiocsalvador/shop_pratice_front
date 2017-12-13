@@ -1,4 +1,3 @@
-import { AuthGuard } from './shared/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,8 +12,11 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { SignupComponent } from './signup/signup.component';
 
+import { AuthGuard } from './shared/auth-guard.service';
 import { ProductService } from './shared/product.service';
 import { AuthService } from './shared/auth.service';
+import { CartSevice } from './shared/cart.service';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
 	declarations: [
@@ -22,6 +24,7 @@ import { AuthService } from './shared/auth.service';
 		HomeComponent,
 		HeaderComponent,
 		SignupComponent,
+		CartComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -33,7 +36,8 @@ import { AuthService } from './shared/auth.service';
 	providers: [
 		ProductService,
 		AuthService,
-		AuthGuard
+		AuthGuard,
+		CartSevice
 	],
 	bootstrap: [AppComponent]
 })
