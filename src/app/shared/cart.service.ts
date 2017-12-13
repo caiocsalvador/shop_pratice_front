@@ -15,25 +15,32 @@ export class CartSevice {
 	constructor(private http: HttpClient, private authService: AuthService){
 	}
 
+
+	// Adds a item to the cart
 	addToCart(item: Product) {
 		this.products.push(item);
+		// Add the sum
 		this.total = +this.total + +item.price;
 		this.cartChanged.next(this.products.slice());
 	}
 
+	// Gets a copy of the service products array
 	getItems() {
 		return this.products.slice();
 	}
 
+	// Remove a item from the shopping cart
 	removeItem(item: Product){
 		const index: number = this.products.indexOf(item);
 		if (index !== -1) {
 			this.products.splice(index, 1);
 		}
+		// Remove from the sum
 		this.total = +this.total - +item.price;
 		this.cartChanged.next(this.products.slice());
 	}
 
+	// Go to the api and create a record
 	buyCart(){
 		const body = JSON.stringify({ products: this.products.slice(), total: this.total});		
 		return this.http.post('http://localhost:8000/api/shopping?token=' + this.authService.getToken(), body,
@@ -41,6 +48,7 @@ export class CartSevice {
 		);
 	}
 
+	// Clear the cart
 	emptyCart(){
 		this.products = [];
 		this.total = 0;

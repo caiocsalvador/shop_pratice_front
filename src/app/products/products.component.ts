@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ProductService } from './../shared/product.service';
 import { Product } from '../shared/product.interface';
@@ -13,17 +14,18 @@ export class ProductsComponent implements OnInit {
 
 	products: Product[];
 
-	constructor(private productService: ProductService) { }
+	constructor(private productService: ProductService, private router: Router) { }
 
 	ngOnInit() {
+		// User product service to get products
 		this.productService.getProducts()
-			.map((data) => data.products)
+			.map((data) => data['products'])
 			.subscribe(
-			// Successful responses call the first callback.
+			// Successful response.
 			(products: Product[]) => this.products = products,
-			// Errors will call this callback instead:
-			err => {
-				console.log('Something went wrong!');
+			// Errors handler:
+			error => {
+				this.router.navigate(['/error'], { queryParams: { error: error.error.message } });
 			}
 		);
 	}

@@ -6,6 +6,7 @@ import { ProductsComponent } from './products/products.component';
 import { SignupComponent } from './signup/signup.component';
 import { CartComponent } from './cart/cart.component';
 import { SuccessComponent } from './cart/success/success.component';
+import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './shared/auth-guard.service';
 
 const appRoutes: Routes = [
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
 	{ path: 'products', loadChildren: './products/products.module#ProductsModule' },
 	{ path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
 	{ path: 'success', component: SuccessComponent, canActivate: [AuthGuard] },
+	{ path: 'error', component: ErrorComponent},
 	/*{ path: 'products', component: ProductsComponent },*/
 ];
 

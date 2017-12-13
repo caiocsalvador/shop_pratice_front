@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
 	constructor(private authService: AuthService, private cartService: CartSevice) { }
 
 	ngOnInit() {
+		// Checks if the array with products in cart has changed
 		this.subscription = this.cartService.cartChanged.subscribe(
 			(products: Product[]) => {
 				this.amount = products.length;
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
 		);
 	}
 
+	// Event handler for logout button
 	onLogout() {
 		this.authService.logout();
 	}

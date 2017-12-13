@@ -17,10 +17,13 @@ export class ProductComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	// Adds products to the Cart Service.
 	addToCart(product: Product){
 		this.cartService.addToCart(product);
+		// Display a flash message
 		this.message = product.name + ' was added to your cart!';
 		setTimeout(() => {
+			// Remove the flash message after 2 sec
 			this.message = '';
 		}, 2000);
 	}

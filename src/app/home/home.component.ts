@@ -16,13 +16,18 @@ export class HomeComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	// Sign in
 	onSignin(form: NgForm) {
 		this.authService.signin(form.value.email, form.value.password)
 			.subscribe(
+				// If logged rediret to products page
 				tokenData => {
 					this.router.navigate(['/products']);
 				},
-				error => console.log(error),
+				// Error handler;
+				error => {
+					this.router.navigate(['/error'], { queryParams: { error: error.error.message } });
+				}
 			);
 	}
 

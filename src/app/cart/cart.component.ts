@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
 	constructor(private cartService: CartSevice, private router: Router) { }
 
 	ngOnInit() {
+		// Check the values and subscribe for changes
 		this.products = this.cartService.getItems();
 		this.total = this.cartService.total;
 		this.subscription = this.cartService.cartChanged.subscribe(
@@ -29,16 +30,21 @@ export class CartComponent implements OnInit {
 		);
 	}
 
+	// remove a item from cart service array
 	removeItem(product: Product){
 		this.cartService.removeItem(product);
 	}
 
+	// Fires the event to buy the cart
 	buyCart(){
 		this.cartService.buyCart().subscribe(
 			response => {
 				this.router.navigate(['success']);
 			},
-			error => console.log(error),
+			// Error handler;
+			error => {
+				this.router.navigate(['/error'], { queryParams: { error: error.error.message } });
+			}
 		);
 	}
 

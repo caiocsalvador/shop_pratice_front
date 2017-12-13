@@ -16,17 +16,24 @@ export class SignupComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	// Form submit
 	onSignup(form: NgForm) {
+		// Use the authService to singup a new user
 		this.authService.signup(form.value.username, form.value.email, form.value.password)
 			.subscribe(
 				response => {
+					// Alert successful registration
 					alert('User registered!');
 					setTimeout(() => {
+						// Redirect to login page
 						this.router.navigate(['']);
 					}, 2000);
 				},
-				error => console.log(error),
-			);
+			// Error handler;
+			error => {
+				this.router.navigate(['/error'], { queryParams: { error: error.error.message }});
+			}
+		);
 	}
 
 }
