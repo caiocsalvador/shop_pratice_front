@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
 	constructor(private authService: AuthService, private router: Router, location: Location) { }
 
 	ngOnInit() {
+		console.log("init");
 		this.token = this.authService.getToken();
 		if (location.pathname === '/') {
 			if (this.authService.isAuthenticated()) {

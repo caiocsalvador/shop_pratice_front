@@ -17,6 +17,7 @@ import { ProductService } from './shared/product.service';
 import { AuthService } from './shared/auth.service';
 import { CartSevice } from './shared/cart.service';
 import { CartComponent } from './cart/cart.component';
+import { SuccessComponent } from './cart/success/success.component';
 
 @NgModule({
 	declarations: [
@@ -25,6 +26,7 @@ import { CartComponent } from './cart/cart.component';
 		HeaderComponent,
 		SignupComponent,
 		CartComponent,
+		SuccessComponent,
 	],
 	imports: [
 		BrowserModule,

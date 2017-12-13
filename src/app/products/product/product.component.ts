@@ -10,6 +10,8 @@ import { CartSevice } from './../../shared/cart.service';
 })
 export class ProductComponent implements OnInit {
 	@Input() product: Product;
+	message = '';
+
 	constructor(private cartService: CartSevice) { }
 
 	ngOnInit() {
@@ -17,6 +19,10 @@ export class ProductComponent implements OnInit {
 
 	addToCart(product: Product){
 		this.cartService.addToCart(product);
+		this.message = product.name + ' was added to your cart!';
+		setTimeout(() => {
+			this.message = '';
+		}, 2000);
 	}
 
 }
