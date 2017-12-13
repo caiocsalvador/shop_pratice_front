@@ -1,4 +1,22 @@
+<div class="d-flex justify-content-between mb-3">
+	<span class="total">Total: {{ total }}</span>
+	<button class="btn btn-success buy-btn">Buy</button>
+</div>
+
 <p *ngIf="products.length == 0">Empty Cart</p>
-<p *ngFor="let product of products">
-	{{ product.name }}
-</p>
+<div *ngFor="let product of products" class="cart-product">
+	<div class="row">
+		<div class="col-lg-3 col-sm-6 col-xs-12">
+			<div class="product-image">
+				<img src="{{ product.image }}" alt="">
+			</div>
+		</div>
+		<div class="col-lg-9 col-sm-6 col-xs-12">
+			<h3>{{ product.name }}</h3>
+			<p>Price:
+				<b>€ {{ product.price }}</b>
+			</p>
+			<span class="remove" (click)="removeItem(product)">Remove</span>
+		</div>
+	</div>
+</div>

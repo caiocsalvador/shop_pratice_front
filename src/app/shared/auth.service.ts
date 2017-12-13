@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { User } from './user.interface';
 import 'rxjs/RX';
 
 @Injectable()
 export class AuthService {
 	token: string;
+	user: User;
 
 	constructor(private http: HttpClient, private router: Router) {
 
@@ -27,6 +29,9 @@ export class AuthService {
 		.map(
 			(data) => {
 				const token = data.token;
+				this.user = data.user;
+				localStorage.setItem('user', JSON.stringify(this.user));
+
 				const base64Url = token.split('.')[1];
 				const base64 = base64Url.replace('-', '+').replace('_', '/');
 				return {token: token, decoded: JSON.parse(window.atob(base64)) };
@@ -42,6 +47,7 @@ export class AuthService {
 
 	getToken() {
 		this.token = localStorage.getItem('token');
+		this.user = JSON.parse(localStorage.getItem('user'));
 		return this.token;
 	}
 
