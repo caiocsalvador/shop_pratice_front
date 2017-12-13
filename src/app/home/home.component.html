@@ -1,0 +1,28 @@
+<div class="card text-center">
+	<div class="card-header">
+		Login
+	</div>
+	<div class="card-body">
+		<h4 class="card-title">Please login</h4>
+		<p class="card-text">Login to have access to our awesome store!</p>
+		<div class="row">
+			<div class="col-md-8 m-auto text-left">
+				<form (ngSubmit)="onSignip(f)" #f="ngForm">
+					<div class="form-group">
+						<label for="email">E-mail</label>
+						<input type="email" name="email" id="email" class="form-control" ngModel required>
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" name="password" id="password" class="form-control" ngModel required>
+					</div>
+					<button type="submit" [disabled]="!f.valid" class="btn btn-primary">Sign up</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="card-footer text-muted">
+		<p>OR</p>
+		<a href="#" [routerLink]="['/signup']">Create an account</a>
+	</div>
+</div>

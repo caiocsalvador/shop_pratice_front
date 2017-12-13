@@ -1,0 +1,33 @@
+a{
+	@include animate(all, 320ms);
+	&:hover,
+	&:before,
+	&:after{
+		@include animate(all, 320ms);
+		text-decoration: none;
+		img{
+			@include animate(all, 320ms);
+		}
+	}
+	img{
+		@include animate(all, 320ms);
+	}
+}
+
+h1, h2, h3, h4, h5{
+    color: $text-color;
+}
+
+p, li, a, span, i, b, time, small, caption{
+    color: $text-color;
+}
+
+h2{
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.4rem;
+}
+
+
+@include scrollbars(.5em, $aqua, rgba(0, 0, 0, 0));
